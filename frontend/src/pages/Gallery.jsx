@@ -6,7 +6,7 @@ const  Gallery = () => {
   return (
     <div>
         <Header activeHeading={5} />
-        Gallery
+        <GalleryComponent/>
         <Footer />
     </div>
   )
