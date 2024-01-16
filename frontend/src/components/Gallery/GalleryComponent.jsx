@@ -2,8 +2,6 @@
 import React, { useState } from "react";
 import "../../styles/tailwind-styles.css";
 
-const GalleryComponent = () => {
-  const [selectedEquipmentIndex, setSelectedEquipmentIndex] = useState(null);
 
   const equipmentData = [
     { name: "Cross Trainer", description: "Cardio machine mimicking walking, running, and climbing.", imageUrl: "images/gallery/cross_trainer.jpg" },
