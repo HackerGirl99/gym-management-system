@@ -3,22 +3,28 @@ import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
 import Navbar from "./Navbar";
 const Header = () => {
+
+  const[activeheading,setActiveHeading]=useState("Home");
+  const handleHeadingClick=(heading)=>{
+    setActiveHeading(heading);
+  }
+
   return (
     <div className="w-full h-[80px] bg-white shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
       <div >
         <Link to="/">
           <img
-            src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-            alt=""
+            src="images/logouovgym.png"
+            alt="logo"
           />
         </Link>
       </div>
       {/* navitems */}
       <div className={`${styles.noramlFlex}`}>
-            <Navbar  />
+            <Navbar  active={activeheading} onHeadingClick={handleHeadingClick}/>
           </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
