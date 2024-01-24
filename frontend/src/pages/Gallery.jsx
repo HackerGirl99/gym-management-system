@@ -5,7 +5,7 @@ import GalleryComponent from "../components/Gallery/GalleryComponent";
 const  Gallery = () => {
   return (
     <div>
-        <Header activeHeading={5} />
+        <Header activeHeading={4} />
         <GalleryComponent/>
         <Footer />
     </div>

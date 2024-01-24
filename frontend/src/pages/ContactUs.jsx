@@ -5,7 +5,7 @@ import Header from "../components/Layout/Header";
 const ContactUS = () => {
   return (
     <div>
-        <Header activeHeading={5} />
+        <Header activeHeading={3} />
         ContactUS
         <Footer />
     </div>
