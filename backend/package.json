@@ -7,7 +7,7 @@
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js"
   },
-  "author": "Mohamed Aslam",
+  "author": "Fathima Asna",
   "license": "ISC",
   "keywords": [],
   "description": "",
