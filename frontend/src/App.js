@@ -10,6 +10,7 @@ import {
   Leaderboard,
 
 } from './routes/Routes';
+import AdminDashboardMain from './components/Admin/AdminDashBoardMain';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/admin" element={<AdminDashboardMain />} />
+
       </Routes>
     </BrowserRouter>
   );
