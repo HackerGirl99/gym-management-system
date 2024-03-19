@@ -7,6 +7,8 @@ const Login = () => {
 
   const handleLogin = () => {
     // Add your login logic here
+
+    
     console.log("Logging in with:", { username, password });
   };
 
