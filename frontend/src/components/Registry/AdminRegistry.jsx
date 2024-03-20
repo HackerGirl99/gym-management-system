@@ -30,4 +30,4 @@ function AdminRegistry() {
   );
   }
 
-export default Registry;
+export default AdminRegistry;
