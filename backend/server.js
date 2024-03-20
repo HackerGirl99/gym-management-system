@@ -1,27 +1,21 @@
-// server.js
 const express = require('express');
-const connectDB = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
-const scheduleRoutes = require('./routes/scheduleRoutes');
-const maintenanceRoutes = require('./routes/maintenanceRoutes');
-const errorHandler = require('./middleware/errorMiddleware');
-
+const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
+const port = 5000;
 
-// Connect to MongoDB
-connectDB();
+const RoleRoute = require('./Routes/RoleRoutes')
+
+mongoose.connect('mongodb+srv://arshathhaseen:1234@cluster0.4ahayis.mongodb.net/SportManagementSystem');
+
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api/users', userRoutes);
-app.use('/api/schedules', scheduleRoutes);
-app.use('/api/maintenance', maintenanceRoutes);
 
-// Error handling middleware
-app.use(errorHandler);
+app.use('/api/role',RoleRoute)
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(port, () => {
+    console.log(`App running on ${port}`);
+});
