@@ -1,30 +1,21 @@
-import React from 'react'
-import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { 
-  HomePage, 
-  LoginPage, 
-  SignupPage,
-  ContactUs,
-  Gallery,
-  Leaderboard,
-
-} from './routes/Routes';
+import React, { useState } from 'react';
+import UserLayout from './Layout/UserLayout';  
+import AdminLayout from './Layout/Admin';  
+import UserContext from './UserContext';
 
 
-function App() {
+const App = () => {
+  const [userRole, setUserRole] = useState('guest');
+  
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up" element={<SignupPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <UserContext.Provider value={[userRole,setUserRole]}>
+        {userRole === 'guest' && <UserLayout />}
+        {userRole === 'admin' && <AdminLayout />}
+      </UserContext.Provider>
+        
+    </div>
   );
-}
+};
 
 export default App;
