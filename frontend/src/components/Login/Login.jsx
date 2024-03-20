@@ -1,13 +1,27 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
+import { useContext } from 'react';
+import axios from "axios";
 
+import UserContext from "./UserContext";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    // Add your login logic here
-    console.log("Logging in with:", { username, password });
+  const values = useContext(UserContext)
+  const [user,setUser] = useState("");
+  const handleLogin = async () => {
+    try {
+      const result = await axios.post('http://localhost:5000/api/role/add', {
+        username,
+        password,
+      });
+      setUser(result.data.role); 
+      console.log(result.data.role);
+      
+      
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
