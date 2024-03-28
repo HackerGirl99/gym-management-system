@@ -1,52 +1,14 @@
 // controllers/userController.js
-const userModule = require('../models/userModule');
+const User = require('../models/User');
 
-const getAllUsers = async (req, res) => {
+// Controller functions for user-related operations
+// Example: User registration
+exports.registerUser = async (req, res) => {
   try {
-    const users = await userModule.getAllUsers();
-    res.json(users);
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    // Process registration logic here
+    res.status(200).json({ success: true, message: 'User registered successfully' });
+  } catch (err) {
+    console.error('Error registering user:', err.message);
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
-};
-
-const createUser = async (req, res) => {
-  try {
-    const newUser = await userModule.createUser(req.body);
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.error('Error creating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const userData = req.body;
-  try {
-    const updatedUser = await userModule.updateUser(id, userData);
-    res.json(updatedUser);
-  } catch (error) {
-    console.error('Error updating user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-const deleteUser = async (req, res) => {
-  const { id } = req.params;
-  try {
-    await userModule.deleteUser(id);
-    res.status(204).end();
-  } catch (error) {
-    console.error('Error deleting user:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-module.exports = {
-  getAllUsers,
-  createUser,
-  updateUser,
-  deleteUser,
 };

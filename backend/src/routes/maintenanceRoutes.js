@@ -1,11 +1,13 @@
 // routes/maintenanceRoutes.js
 const express = require('express');
 const router = express.Router();
+const authenticateUser = require('../middleware/authMiddleware');
+const errorHandler = require('../middleware/errorMiddleware');
+const { getMaintenanceRecords, createMaintenanceRecord } = require('../controllers/maintenanceController');
 
-// Import your controller methods for handling PUT requests
-const { updateMaintenanceRecord } = require('../controllers/maintenanceController');
+router.get('/', authenticateUser, getMaintenanceRecords);
+router.post('/', authenticateUser, createMaintenanceRecord);
 
-// Define the PUT route with a valid callback function
-router.put('/:id', updateMaintenanceRecord);
+router.use(errorHandler);
 
 module.exports = router;

@@ -1,29 +1,22 @@
 // controllers/maintenanceController.js
-const maintenanceModule = require('../models/maintenanceModule');
+const Maintenance = require('../models/Maintenance');
 
-// Get all maintenance records
-const getMaintenanceRecords = async (req, res) => {
+exports.getMaintenanceRecords = async (req, res) => {
   try {
-    const maintenanceRecords = await maintenanceModule.getMaintenanceRecords();
-    res.json(maintenanceRecords);
-  } catch (error) {
-    console.error('Error fetching maintenance records:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    // Implement logic to get maintenance records
+    res.status(200).json({ success: true, data: maintenanceRecords });
+  } catch (err) {
+    console.error('Error getting maintenance records:', err.message);
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
 };
 
-// Create new maintenance record
-const createMaintenanceRecord = async (req, res) => {
+exports.createMaintenanceRecord = async (req, res) => {
   try {
-    const newMaintenanceRecord = await maintenanceModule.createMaintenanceRecord(req.body);
-    res.status(201).json(newMaintenanceRecord);
-  } catch (error) {
-    console.error('Error creating maintenance record:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    // Implement logic to create maintenance record
+    res.status(200).json({ success: true, message: 'Maintenance record created successfully' });
+  } catch (err) {
+    console.error('Error creating maintenance record:', err.message);
+    res.status(500).json({ success: false, error: 'Internal server error' });
   }
-};
-
-module.exports = {
-  getMaintenanceRecords,
-  createMaintenanceRecord,
 };
