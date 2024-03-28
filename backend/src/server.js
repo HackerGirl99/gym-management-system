@@ -12,35 +12,21 @@ const equipmentRoutes = require('./routes/equipmentRoutes');
 const errorHandler = require('./middleware/errorMiddleware');
 const authMiddleware = require('./middleware/authMiddleware');
 
-const initializeDatabase = require('./prismaInit'); // Import the Prisma initialization module
+
+
+
+const connectDB = require('./db/connection');
 
 const app = express();
 
-mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+connectDB();
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
-const db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('MongoDB connected successfully');
-});
-
-// Initialize the database on application startup
-initializeDatabase()
-  .then(() => {
-    // Start the server after the database is initialized
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch(error => {
-    console.error('Error initializing database:', error);
-    process.exit(1); // Exit the process if database initialization fails
-  });
 
 // Middleware
 app.use(express.json());
