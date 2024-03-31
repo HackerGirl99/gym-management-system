@@ -8,7 +8,7 @@ function App() {
       {/* Main content area */}
       <div className="flex flex-col flex-grow bg-gray-100 p-4">
         {/* Sidebar */}
-        {/<Sidebar />/}
+        {/* {/<Sidebar />/} */}
 
         {/* Content */}
         <AddNewUserForm />
