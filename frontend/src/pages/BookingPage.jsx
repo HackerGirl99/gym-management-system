@@ -1,17 +1,18 @@
 import React from 'react'
-import Footer from "../components/Layout/Footer.jsx";
-import Header from "../components/Layout/Header.jsx";
+import Footer from "../components/Layout/Footer";
+import Header from "../components/Layout/Header";
 
-import Booking from '../components/Booking/Booking.jsx';
+import Bookingcomp from '../components/Booking/Booking.jsx';
 
 const  Booking = () => {
   return (
     <div>
         <Header activeHeading={4} />
-       <Booking></Booking>
-        <Footer />
+       <Bookingcomp/>
+        <Footer /> 
     </div>
   )
 }
+
 
 export default Booking
