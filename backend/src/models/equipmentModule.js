@@ -1,30 +1,19 @@
-// modules/equipmentModule.js
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+// models/equipmentModel.js
+const mongoose = require('mongoose');
 
-// Get all equipment
-const getAllEquipment = async () => {
-  return prisma.equipment.findMany();
-};
+// Define the schema for gym equipment
+const equipmentSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  type: { type: String, required: true }, // Example: cardio, strength training, etc.
+  description: String,
+  quantity: { type: Number, default: 0 },
+  condition: String, // Example: new, used, refurbished
+  location: String, // Example: floor number, section, room
+  maintenanceSchedule: String, // Example: monthly, quarterly, annually
+  imageUrl: String, // URL of an image for the equipment
+});
 
-// Create new equipment
-const createEquipment = async (equipmentData) => {
-  return prisma.equipment.create({ data: equipmentData });
-};
+// Create the model for gym equipment
+const Equipment = mongoose.model('Equipment', equipmentSchema);
 
-// Update existing equipment
-const updateEquipment = async (id, equipmentData) => {
-  return prisma.equipment.update({ where: { id }, data: equipmentData });
-};
-
-// Delete existing equipment
-const deleteEquipment = async (id) => {
-  return prisma.equipment.delete({ where: { id } });
-};
-
-module.exports = {
-  getAllEquipment,
-  createEquipment,
-  updateEquipment,
-  deleteEquipment,
-};
+module.exports = Equipment;
