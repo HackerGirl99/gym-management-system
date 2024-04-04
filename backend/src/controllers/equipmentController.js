@@ -1,10 +1,11 @@
 // controllers/equipmentController.js
-const equipmentModule = require('../models/equipmentModule');
+const Equipment = require('../models/equipmentModel');
+const equipmentService = require('../services/equipmentService');
 
 // Get all equipment
 const getAllEquipment = async (req, res) => {
   try {
-    const equipment = await equipmentModule.getAllEquipment();
+    const equipment = await equipmentService.getAllEquipment();
     res.json(equipment);
   } catch (error) {
     console.error('Error fetching equipment:', error);
@@ -15,7 +16,7 @@ const getAllEquipment = async (req, res) => {
 // Create new equipment
 const createEquipment = async (req, res) => {
   try {
-    const newEquipment = await equipmentModule.createEquipment(req.body);
+    const newEquipment = await equipmentService.createEquipment(req.body);
     res.status(201).json(newEquipment);
   } catch (error) {
     console.error('Error creating equipment:', error);
@@ -28,7 +29,7 @@ const updateEquipment = async (req, res) => {
   const { id } = req.params;
   const equipmentData = req.body;
   try {
-    const updatedEquipment = await equipmentModule.updateEquipment(id, equipmentData);
+    const updatedEquipment = await equipmentService.updateEquipment(id, equipmentData);
     res.json(updatedEquipment);
   } catch (error) {
     console.error('Error updating equipment:', error);
@@ -40,7 +41,7 @@ const updateEquipment = async (req, res) => {
 const deleteEquipment = async (req, res) => {
   const { id } = req.params;
   try {
-    await equipmentModule.deleteEquipment(id);
+    await equipmentService.deleteEquipment(id);
     res.status(204).end();
   } catch (error) {
     console.error('Error deleting equipment:', error);
