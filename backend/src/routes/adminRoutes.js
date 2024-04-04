@@ -1,11 +1,13 @@
-// routes/adminRoutes.js
+// adminRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController');
 
 router.get('/', adminController.getAllAdmins);
 router.post('/', adminController.createAdmin);
-router.put('/:id', adminController.updateAdmin);
-router.delete('/:id', adminController.deleteAdmin);
+router.put('/:id/password', adminController.updateAdminPassword);
+router.put('/:id/phoneNumber', adminController.updateAdminPhoneNumber);
 
 module.exports = router;
+
