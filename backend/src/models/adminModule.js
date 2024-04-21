@@ -1,30 +1,13 @@
-// modules/adminModule.js
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+const mongoose = require('mongoose');
 
-// Get all admins
-const getAllAdmins = async () => {
-  return prisma.admin.findMany();
-};
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  phoneNumber: { type: String }, // Add phone number field
+  // Other admin-specific fields
+});
 
-// Create new admin
-const createAdmin = async (adminData) => {
-  return prisma.admin.create({ data: adminData });
-};
+const Admin = mongoose.model('Admin', adminSchema);
 
-// Update existing admin
-const updateAdmin = async (id, adminData) => {
-  return prisma.admin.update({ where: { id }, data: adminData });
-};
-
-// Delete existing admin
-const deleteAdmin = async (id) => {
-  return prisma.admin.delete({ where: { id } });
-};
-
-module.exports = {
-  getAllAdmins,
-  createAdmin,
-  updateAdmin,
-  deleteAdmin,
-};
+module.exports = Admin;
