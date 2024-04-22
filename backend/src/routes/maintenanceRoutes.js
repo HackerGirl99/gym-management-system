@@ -1,13 +1,13 @@
-// routes/maintenanceRoutes.js
+// maintenanceRoutes.js
+
 const express = require('express');
 const router = express.Router();
-const authenticateUser = require('../middleware/authMiddleware');
-const errorHandler = require('../middleware/errorMiddleware');
-const { getMaintenanceRecords, createMaintenanceRecord } = require('../controllers/maintenanceController');
+const maintenanceController = require('../controllers/maintenanceController');
 
-router.get('/', authenticateUser, getMaintenanceRecords);
-router.post('/', authenticateUser, createMaintenanceRecord);
-
-router.use(errorHandler);
+// Define routes
+router.get('/', maintenanceController.getAllMaintenance);
+router.post('/', maintenanceController.createMaintenance);
+router.put('/:id', maintenanceController.updateMaintenance);
+router.delete('/:id', maintenanceController.deleteMaintenance);
 
 module.exports = router;
