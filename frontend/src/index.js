@@ -1,12 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "bootstrap/dist/css/bootstrap.min.css";
+// import './assets/styles/bootstrap.custom.css';
+import "./assets/styles/index.css";
+import reportWebVitals from "./reportWebVitals";
+import Routes from "./routes/Routes";
+import store from "./store";
+import { Provider } from "react-redux";
+import { HelmetProvider } from "react-helmet-async";
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider>
+      <Provider store={store}>
+        <Routes />
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 );
 

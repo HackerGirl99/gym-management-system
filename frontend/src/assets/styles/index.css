@@ -1,0 +1,154 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+main {
+  min-height: 80vh;
+  margin-top: 80px;
+}
+
+.rating span {
+  margin: 0.1rem;
+}
+
+.rating svg {
+  color: #f8e825;
+}
+
+.rating-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-left: 0.5rem;
+}
+
+.product-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+table td,
+table th {
+  text-align: center;
+}
+
+.review {
+  margin-top: 30px;
+}
+
+.review h2 {
+  font-size: 24px;
+  background: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.review button {
+  margin-top: 10px;
+}
+
+.carousel-caption {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.gallery-topic {
+  @apply text-black font-regular text-4xl absolute left-40 top-10 w-96;
+}
+
+.gallery-body {
+    @apply bg-gray-200 p-4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+
+.gallery-container {
+  @apply mx-auto;
+}
+
+.gallery-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8;
+}
+
+.gallery-card {
+  @apply bg-white rounded-lg overflow-hidden shadow-lg;
+}
+
+.gallery-img {
+  @apply w-full h-64 object-cover;
+}
+
+.gallery-title {
+  @apply font-bold text-xl mb-2;
+}
+
+.gallery-text {
+  @apply text-gray-700 text-base;
+}
+
+
+.gallery-button {
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded-full mt-4 transition duration-300 ease-in-out;
+}
+
+.gallery-button:hover {
+  @apply bg-indigo-500;
+}
+
+/* Add this to your CSS file */
+.leaderboard-container {
+  text-align: center;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.tab.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.section-title {
+  margin-bottom: 10px;
+}
+
+.top-leaders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leader-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.rank {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.username {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.hours {
+  font-style: italic;
+}

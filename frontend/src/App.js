@@ -1,33 +1,24 @@
-import React from 'react'
-import "./App.css";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { 
-  HomePage, 
-  LoginPage, 
-  SignupPage,
-  ContactUs,
-  Gallery,
-  Leaderboard,
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import { Outlet } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-} from './routes/Routes';
-import AdminDashboardMain from './components/Admin/AdminDashBoardMain';
-
-
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/sign-up" element={<SignupPage />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/admin" element={<AdminDashboardMain />} />
-
-      </Routes>
-    </BrowserRouter>
+    <div className='position-relative'>
+      <Header />
+      <main>
+        <Container>
+          <Outlet />
+        </Container>
+      </main>
+      <Footer />
+      <ToastContainer autoClose={1000} />
+    </div>
   );
-}
+};
 
 export default App;
