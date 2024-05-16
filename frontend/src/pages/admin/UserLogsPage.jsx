@@ -1,18 +1,43 @@
-import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const UserLogsPage = () => {
   const [enterUserId, setEnterUserId] = useState("");
   const [exitUserId, setExitUserId] = useState("");
 
-  const handleEnterAction = () => {
+  const handleEnterAction = async () => {
     // Implement your logic for entering gym
-    console.log("Entering gym...");
+    const res = await fetch("/api/v1/users/entrance", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ enterUserId }),
+    });
+
+    if (res.status === 200) {
+      toast.success("User entered successfull");
+    } else {
+      toast.error("User entered unsuccessfull");
+    }
   };
 
-  const handleExitAction = () => {
+  const handleExitAction = async () => {
     // Implement your logic for exiting gym
-    console.log("Exiting gym...");
+    const res = await fetch("/api/v1/users/exit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ exitUserId }),
+    });
+
+    if (res.status === 200) {
+      toast.success("User exited successfull");
+    } else {
+      toast.error("User exited unsuccessfull");
+    }
   };
 
   return (
