@@ -1,20 +1,42 @@
-// middleware/authMiddleware.js
-const jwt = require('jsonwebtoken');
+import User from '../models/userModel.js';
+import jwt from 'jsonwebtoken';
 
-const authenticateUser = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
-    return res.status(401).json({ success: false, error: 'Unauthorized: Missing token' });
-  }
-
+// Middleware to protect routes by verifying JWT authentication token.
+const protect = async (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded.user;
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      res.statusCode = 401;
+      throw new Error('Authentication failed: Token not provided.');
+    }
+
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (!decodedToken) {
+      res.statusCode = 401;
+      throw new Error('Authentication failed: Invalid token.');
+    }
+
+    req.user = await User.findById(decodedToken.userId).select('-password');
+
     next();
-  } catch (err) {
-    console.error('Authentication error:', err.message);
-    return res.status(401).json({ success: false, error: 'Unauthorized: Invalid token' });
+  } catch (error) {
+    next(error);
   }
 };
 
-module.exports = authenticateUser;
+// Middleware to check if the user is an admin.
+const admin = (req, res, next) => {
+  try {
+    if (!req.user || !req.user.isAdmin) {
+      res.statusCode = 401;
+      throw new Error('Authorization failed: Not authorized as an admin.');
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { protect, admin };
